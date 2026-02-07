@@ -42,7 +42,7 @@
                     ☰
                 </button>
                 <h1 class="text-lg font-semibold text-gray-700">
-                    Dashboard
+                    @yield('title', 'Dashboard')
                 </h1>
             </div>
 
