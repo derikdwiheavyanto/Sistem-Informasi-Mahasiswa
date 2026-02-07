@@ -46,13 +46,14 @@
                 </h1>
             </div>
 
-            <form method="POST" action="/logout">
+            <form id="logoutForm" method="POST" action="/logout">
                 @csrf
-                <button
+                <button type="button" id="btnLogout"
                     class="text-sm px-4 py-1.5 rounded-lg border border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition">
                     Logout
                 </button>
             </form>
+
         </header>
 
         {{-- Mobile Sidebar --}}
@@ -119,6 +120,28 @@
             })
         </script>
     @endif
+
+    <script>
+        const btnLogout = document.getElementById('btnLogout');
+        const logoutForm = document.getElementById('logoutForm');
+
+        btnLogout?.addEventListener('click', () => {
+            Swal.fire({
+                title: 'Logout?',
+                text: 'Kamu akan keluar dari aplikasi',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ef4444',
+                cancelButtonColor: '#6b7280',
+                confirmButtonText: 'Ya, Logout',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    logoutForm.submit();
+                }
+            });
+        });
+    </script>
 
 </body>
 
