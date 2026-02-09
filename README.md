@@ -19,7 +19,7 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek MahasiswaApp di lingkunga
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/derikdwiheavyanto/Sistem-Informasi-Mahasiswa.git
+git clone <https://github.com/derikdwiheavyanto/Sistem-Informasi-Mahasiswa.git>
 cd mahasiswa-app
 ```
 
