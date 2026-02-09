@@ -88,6 +88,8 @@
     {{-- Chart / Page Scripts --}}
     @stack('scripts')
 
+    {{-- scriptsMahasiswa --}}
+    @stack('scriptMahasiswa')
     {{-- Sidebar Script --}}
     <script>
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');

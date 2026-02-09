@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
 class AuthController extends Controller
 {
-    // tampilkan form login
     public function loginForm()
     {
         return view('auth.login');
     }
 
-    // proses login
     public function login(Request $request)
     {
         $request->validate([
@@ -33,7 +32,27 @@ class AuthController extends Controller
         return back()->with('error', 'Username atau password salah');
     }
 
-    // logout
+    public function formRegister()
+    {
+        return view('auth.register');
+    }
+
+    public function register(Request $request)
+    {
+        $validated = $request->validate([
+            'nama' => 'required',
+            'email' => 'required|email:rfc,dns|unique:users,email',
+            'username' => 'required|unique:users,username',
+            'password' => 'required'
+        ]);
+
+        $user = User::create($validated);
+
+        Auth::login($user);
+
+        return redirect('/')->with('success', 'Berhasil Register');
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();

@@ -18,7 +18,7 @@ class MahasiswaFactory extends Factory
         $tahunMasuk = fake()->numberBetween(2016, 2025);
 
         // NIM = tahun + 4 digit
-        $nim = $tahunMasuk . fake()->numerify('####');
+        $nim = $tahunMasuk . fake()->numerify('########');
 
         return [
             'nim' => $nim,

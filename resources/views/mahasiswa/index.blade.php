@@ -93,7 +93,8 @@
                                     <form action="/mahasiswa/{{ $mhs->id }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" class="btn-delete text-red-600 hover:underline font-medium">
+                                        <button type="button" class="btn-delete text-red-600 hover:underline font-medium"
+                                            data-nama="{{ $mhs->nama }}">
                                             Hapus
                                         </button>
                                     </form>
@@ -117,4 +118,34 @@
 
         </div>
     </div>
+
+    @push('scriptMahasiswa')
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelectorAll('.btn-delete').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const nama = this.dataset.nama ?? 'data ini';
+                        const form = this.closest('form');
+
+                        if (!form) return;
+
+                        Swal.fire({
+                            title: 'Yakin ingin menghapus?',
+                            text: `Data mahasiswa "${nama}" akan dihapus permanen.`,
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#dc2626', // red-600
+                            cancelButtonColor: '#6b7280', // gray-500
+                            confirmButtonText: 'Ya, hapus!',
+                            cancelButtonText: 'Batal'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                form.submit();
+                            }
+                        });
+                    });
+                });
+            });
+        </script>
+    @endpush
 @endsection
